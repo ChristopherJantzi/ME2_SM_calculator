@@ -12,3 +12,6 @@ Notes:
   2026Apr28
     - Added in progress GUI
     - Added complete ME2_suicideMission_outcomePredictor.py with instructions
+
+  2026May09
+    - Stopped procrastinating and just posted the thing to the Mass Effect Subreddit. It's fine. It doesn't have to be perfect, Chris. It's fine.
