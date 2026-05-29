@@ -43,8 +43,8 @@ Don't activate Legion of Grunt
 Cargo bay: 		Take Kasumi and Tali
 Leader1:		Doesn't Matter
 Vents:			Jacob
-Leader2:		Not Miranda, Zaeed, Morinth
-Squad 2:		Zaeed and either Kasumi or Tali
+Leader2:		Either Tali or Kasumi
+Squad 2:		Either Tali or Kasumi, also Zaeed
 Biotics:		Miranda
 Final Fight:	Miranda and Morinth
 
@@ -134,7 +134,7 @@ def weaponsCheck(d):
 	"""	
 	l = ["Thane", "Garrus", "Zaeed", "Grunt", "Jack", "Samara", "Morinth"]
 	for i, v in enumerate(l):
-		if (v in d) and (d[v].squad == False):
+		if (v in d):
 			del d[v]
 			break
 
@@ -389,12 +389,6 @@ if not upgradeShield:
 if not upgradeCannon:
 	weaponsCheck(survivors)
 
-
-
-
-
-
-
 ### Vents - Squad and Specialist Selections
 report(survivors, "Vents", crewStatus)
 leader = FireTeamLeader_1
@@ -402,7 +396,6 @@ spec = VentSpecialist
 for i, name in enumerate(VentsSquad):
 	survivors[name].squad = True
 ventCheck(survivors, leader, spec)
-
 
 ### Long Walk - Squad and Specialist Selections
 report(survivors, "Long Walk", crewStatus)
@@ -412,6 +405,12 @@ for i, name in enumerate(LongWalkSquad):
 	survivors[name].squad = True
 bioticCheck(survivors, spec)
 secondLeaderCheck(survivors, leader)
+
+
+
+
+
+
 
 
 ## The Crew
@@ -426,6 +425,12 @@ if Escort not in survivors:
 else:
 	escortLoyal = survivors[Escort].loyal
 	del survivors[Escort]
+
+
+
+
+
+
 
 
 ## Final Fight - Squad Selection

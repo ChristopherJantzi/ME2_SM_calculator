@@ -6,6 +6,7 @@ from tkinter import ttk, scrolledtext
 import tkinter.font as tkfont
 import copy
 
+
 '''----------------------------------------Constants, Flags, Options----------------------------------------
 '''
 stinger = True
@@ -111,7 +112,7 @@ def weaponsCheck(d):
     """	
     l = ["Thane", "Garrus", "Zaeed", "Grunt", "Jack", "Samara", "Morinth"]
     for i, v in enumerate(l):
-        if (v in d) and (not d[v].squad.get()):
+        if (v in d):
             del d[v]
             return v
 
@@ -242,51 +243,15 @@ def holdTheLine(d):
             people += 1
             added = deets.tier.get() + int(deets.loyal.get())
             score += added
-    score /= people
-    if people == 1:
-        if score < 2:
-            name = get_em(d, l)
-            theDead.append(name)
-    elif people == 2:
-        if score == 0:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score < 2:
-            name = get_em(d, l)
-            theDead.append(name)
-    elif people == 3:
-        if score == 0:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score < 1:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score < 2:
-            name = get_em(d, l)
-            theDead.append(name)
-    elif people == 4:
-        if score == 0:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score < 0.5:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score <= 1:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score < 2:
-            name = get_em(d, l)
-            theDead.append(name)
-    else:
-        if score < 0.5:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score < 1.5:
-            name = get_em(d, l)
-            theDead.append(name)
-        if score < 2:
-            name = get_em(d, l)
-            theDead.append(name)
+
+    score = np.floor(score/3)
+    count = 0
+
+    while count < (people-score):
+        name = get_em(d, l)
+        theDead.append(name)
+        count += 1
+
     return theDead
 
 def finalFight(d):
@@ -315,7 +280,7 @@ class GUI():
         self.root.title("Jantzi's Super Wham-O-Dyne ME2 Suicide Mission Calculator!!!")
         self.root.geometry("1400x900") # width x height
 
-        self.allSquadmates = {"Grunt":Character(tier=3), "Zaeed":Character(tier=3), "Thane":Character(tier=1), "Legion":Character(ventPref=True, tier=1), "Garrus":Character(leaderPref=True, tier=3), "Jacob":Character(leaderPref=True, tier=1), "Miranda":Character(leaderPref=True, tier=1), "Jack":Character(bioticPref=True, tier=0), "Kasumi":Character(ventPref=True, tier=0), "Tali":Character(ventPref=True, tier=0), "Mordin":Character(tier=0), "Samara":Character(bioticPref=True, tier=1), "Morinth":Character(bioticPref=True, recruited=False, tier=1)}
+        self.allSquadmates = {"Grunt":Character(tier=4), "Zaeed":Character(tier=4), "Thane":Character(tier=2), "Legion":Character(ventPref=True, tier=2), "Garrus":Character(leaderPref=True, tier=4), "Jacob":Character(leaderPref=True, tier=2), "Miranda":Character(leaderPref=True, tier=2), "Jack":Character(bioticPref=True, tier=1), "Kasumi":Character(ventPref=True, tier=1), "Tali":Character(ventPref=True, tier=1), "Mordin":Character(tier=1), "Samara":Character(bioticPref=True, tier=2), "Morinth":Character(bioticPref=True, recruited=False, tier=2)}
         self.allSquadmates_names = list(self.allSquadmates)
         self.allSquadmates_names.sort()
         self.crewMessage = "The status of the crew is unknown . . ."
@@ -715,7 +680,7 @@ class GUI():
                 killedThisRound.append(f"The main cannon could not disable the Collector Ship. Their counter attack killed {name}.\n\n")
 
             if len(killedThisRound) == 0:
-                message_crewDied = "No squadmates killed this round."
+                message_crewDied = "No squadmates killed this round.\n\n"
             else:
                 for i, m in enumerate(killedThisRound):
                     message_crewDied += m
@@ -931,7 +896,6 @@ if stinger:
 	print()
 	print("\nOkay. 3, 2, 1, let's jam! \n".center(152, "-"))
 	print()
-
 '''--------------------MAIN-------------------MAIN-------------------MAIN--------------------
 '''
 if __name__ == "__main__":
