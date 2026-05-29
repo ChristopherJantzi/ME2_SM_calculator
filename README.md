@@ -17,3 +17,7 @@ Notes:
 
 2026May09
   1) Stopped procrastinating and just posted the thing to the Mass Effect Subreddit. It's fine. It doesn't have to be perfect, Chris.
+
+2026May29
+  1) Fixed an error where the Weapons Check let squadmates that accompanied Shepard to the cargo bay survive. That fight's over, so they're BACK ON THE MENU (insert evil laugh)
+  2) Side Note: This totally screws MY plan for my "Everyone Around Shep Dies" run. So . . . success? At least it'll be more accurate?
